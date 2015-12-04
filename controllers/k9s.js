@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var adopt = require("../models/k9/connection").models.k9;
+var adopt = require("../models/k9");
 
 
 function error(response, message){
