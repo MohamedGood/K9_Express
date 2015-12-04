@@ -9,7 +9,7 @@ function error(response, message){
 }
 
 router.get("/", function(req, res){
-  k9.findAll({}).poulate("location", "name").then(function(k9){
+  k9.findAll({}).populate("location", "name").then(function(k9){
     res.json(location)
   });
 });
