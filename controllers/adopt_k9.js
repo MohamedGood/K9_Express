@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var adopt = require("../db/k9/connection").models.k9;
+var adopt = require("../models/k9/connection").models.k9;
 
 
 function error(response, message){
@@ -8,12 +8,8 @@ function error(response, message){
   response.json({error: message});
 }
 
-router.get("/k9", function(req, res){
-  k9.findAll().then(function(k9){
-    res.render("k9/index", {k9: k9});
+router.get("/", function(req, res){
+  k9.findAll({}).poulate("location", "name").then(function(k9){
+    res.json(location)
   });
-});
-
-app.get('/', function(req, res){
-  res.render('adopt_k9.js');
 });
