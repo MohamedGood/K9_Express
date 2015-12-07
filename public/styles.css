@@ -1,19 +1,22 @@
 
 body {
-  background-color: burlywood;
+  background-color: khaki;
 
 }
 
 h1 {
-  font-family: fantasy;
-  text-align: center; 
+  font-family: Arial;
+  text-align: center;
+  font color: gold;
 
 }
 
 h2 {
-  font-family: fantasy;
+  font-family: Arial;
+  font color: gold;
 }
 
 h3 {
-  font-family: fantasy;
+  font-family: Arial;
+  font color: gold;
 }
