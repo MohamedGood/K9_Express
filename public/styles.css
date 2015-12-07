@@ -1,8 +1,19 @@
 
 body {
-  background-color :burlywood
+  background-color: burlywood;
+
 }
 
 h1 {
-  
+  font-family: fantasy;
+  text-align: center; 
+
+}
+
+h2 {
+  font-family: fantasy;
+}
+
+h3 {
+  font-family: fantasy;
 }
