@@ -12,20 +12,26 @@ function authenticatedUser(req, res, next) {
 }
 
 router.route('/')
-  .get(staticsController.home);
+.get(staticsController.home);
+
+
 
 router.route('/signup')
-  .get(usersController.getSignup)
-  .post(usersController.postSignup);
+
+.get(usersController.getSignup)
+.post(usersController.postSignup);
 
 router.route('/login')
-  .get(usersController.getLogin)
-  .post(usersController.postLogin);
+
+.post(usersController.postLogin);
 
 router.route("/logout")
-  .get(usersController.getLogout);
+
+.get(usersController.getLogout);
 
 router.route("/secret")
-   .get(authenticatedUser, usersController.secret);
+
+.get(authenticatedUser, usersController.secret);
+
 
 module.exports = router;
