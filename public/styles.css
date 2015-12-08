@@ -1,7 +1,7 @@
 
 body {
-  background-color: khaki;
-
+  background-color: papayawhip;
+  padding-top: 70px;
 }
 
 h1 {
@@ -19,4 +19,17 @@ h2 {
 h3 {
   font-family: Arial;
   font color: gold;
+}
+
+li {
+  display: inline;
+
+}
+
+nav {
+  margin-bottom: 80px;
+}
+
+.k9  {
+  color: white;
 }
