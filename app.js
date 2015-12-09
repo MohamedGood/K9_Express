@@ -13,8 +13,10 @@ app.get("/", function(req, res){
 });
 
 app.get("/navbar", function(req, res){
- res.render("index.hbs");
+ res.render("signup.hbs");
 });
+
+
 
 // app.use("/k9", require("./controllers/k9s.js"));
 // app.use("/location", require("./controllers/locations.js"));
