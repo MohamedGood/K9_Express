@@ -3,12 +3,17 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require('mongoose')
 var session = require('express-session')
+var flash = require('connect-flash')
+var passport = require('passport');
+require('./config/passport')(passport)
 var usersController = require('./controllers/users')
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "hbs");
-app.use(session({secret:'k9'}))
+app.use(session({secret:'k9',resave:true,saveUninitialized:true}))
+app.use(passport.initialize())
+app.use(flash())
 
 app.get("/", function(req, res){
  res.render("index.hbs");
