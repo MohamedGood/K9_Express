@@ -8,6 +8,8 @@ var passport = require('passport');
 require('./config/passport')(passport)
 var usersController = require('./controllers/users')
 
+
+
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "hbs");
@@ -27,7 +29,16 @@ app.get("/login", function(req, res){
  res.render("login.hbs");
 });
 
-app.post("/signup",usersController.postSignup)
+//app.post("/signup",usersController.postSignup)
+
+app.use(function (req, res, next) {
+  global.currentUser = req.user;
+  res.locals.currentUser = req.user;
+  next();
+});
+
+var routes = require('./config/routes');
+app.use(routes);
 
 
 
