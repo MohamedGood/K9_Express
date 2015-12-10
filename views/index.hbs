@@ -3,10 +3,6 @@
 <head>
   <header><h1></h1></header>
   <div class="Locations"></div>
-  <form id="search">
-    <input type="search" placeholder="Search for a DOG...">
-    <input type="submit" value="Search">
-  </form>
 
   <title>Google Map Template with Geocoded Address</title>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>		<!-- Google Maps API -->
@@ -74,6 +70,7 @@
     // Set event to display the InfoWindow anchored to the marker when the marker is clicked.
     google.maps.event.addListener( marker, 'click', function() { infowindow.open( map, marker ); });
   }
+  
 
   </script>
   <style>
@@ -94,7 +91,7 @@
     <input type="text" id="address"/>
     <button id="locate">Locate</button>
   </div>
-  
+
 
 
 </body>

@@ -19,6 +19,8 @@ module.exports = function(passport) {
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, email, password, callback) {
+    console.log("test in passport");
+
     User.findOne({ 'local.email' : email }, function(err, user) {
       if (err) return callback(err);
 
@@ -44,7 +46,7 @@ module.exports = function(passport) {
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, email, password, callback) {
-console.log("test")
+    console.log("test")
     // Search for a user with this email
     User.findOne({ 'local.email' :  email }, function(err, user) {
       if (err) {
