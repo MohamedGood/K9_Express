@@ -18,6 +18,7 @@ router.route('/signup')
 .post(usersController.postSignup);
 
 router.route('/login')
+
 .get(usersController.getLogin)
 .post(usersController.postLogin);
 

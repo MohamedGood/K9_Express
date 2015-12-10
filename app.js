@@ -13,13 +13,31 @@ var usersController = require('./controllers/users')
 
 mongoose.connect(process.env.MONOGOLAB_URI  || 'mongodb://localhost/k9-express');
 
-
+app.use(morgan('dev'));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "hbs");
 app.use(session({secret:'k9',resave:true,saveUninitialized:true}))
 app.use(passport.initialize())
+app.use(passport.session());
 app.use(flash())
+
+
+app.use(function (req, res, next) {
+  global.currentUser = req.user;
+  res.locals.currentUser = req.user;
+  next();
+});
+
+function authenticatedUser(req, res, next) {
+  // If the user is authenticated, then we continue the execution
+  if (req.isAuthenticated()) return next();
+
+  // Otherwise the request is always redirected to the home page
+  res.redirect('/');
+}
+
 
 app.get("/", function(req, res){
   res.render("index.hbs");
@@ -33,16 +51,12 @@ app.get("/login", function(req, res){
   res.render("login.hbs");
 });
 
-//app.post("/signup",usersController.postSignup)
+app.post("/signup",usersController.postSignup)
+app.post("/login",usersController.postLogin)
 
-app.use(function (req, res, next) {
-  global.currentUser = req.user;
-  res.locals.currentUser = req.user;
-  next();
-});
 
-var routes = require('./config/routes');
-app.use(routes);
+//var routes = require('./config/routes');
+//app.use(routes);
 
 
 

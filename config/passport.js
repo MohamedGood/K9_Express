@@ -1,6 +1,5 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('../models/user');
-var passport        = require('passport');
 
 
 module.exports = function(passport) {
@@ -23,12 +22,15 @@ module.exports = function(passport) {
     console.log("test in passport");
 
     User.findOne({ 'local.email' : email }, function(err, user) {
-      if (err) return callback(err);
+      if (err){
+        console.log(err)
+        return callback(err);}
 
       if (user) {
+        console.log(user)
         return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
       }else {
-
+        console.log(newUser)
         var newUser        = new User();
         newUser.local.email = email;
         newUser.local.password = newUser.encrypt(password);
@@ -47,7 +49,7 @@ module.exports = function(passport) {
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, email, password, callback) {
-    console.log("test")
+    console.log("test in login")
     // Search for a user with this email
     User.findOne({ 'local.email' :  email }, function(err, user) {
       if (err) {

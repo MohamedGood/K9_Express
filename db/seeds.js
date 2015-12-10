@@ -1,7 +1,7 @@
 require("./schema");
 var k9Database = require("./connection");
 var mongoose = require("mongoose");
-mongoose.connect(process.env.MONOGOLAB_URI  || 'mongodb://localhost/k9-express');
+// mongoose.connect(process.env.MONOGOLAB_URI  || 'mongodb://localhost/k9-express');
 
 
 
