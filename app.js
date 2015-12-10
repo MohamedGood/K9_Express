@@ -4,10 +4,15 @@ var bodyParser = require("body-parser");
 var mongoose = require('mongoose')
 var session = require('express-session')
 var flash = require('connect-flash')
+var hbs = require("hbs");
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
 var passport = require('passport');
 require('./config/passport')(passport)
 var usersController = require('./controllers/users')
 
+mongoose.connect('mongodb://localhost/local-authentication-with-passport');
 
 
 app.use(bodyParser.json());
@@ -18,15 +23,15 @@ app.use(passport.initialize())
 app.use(flash())
 
 app.get("/", function(req, res){
- res.render("index.hbs");
+  res.render("index.hbs");
 });
 
 app.get("/signup", function(req, res){
- res.render("signup.hbs");
+  res.render("signup.hbs");
 });
 
 app.get("/login", function(req, res){
- res.render("login.hbs");
+  res.render("login.hbs");
 });
 
 //app.post("/signup",usersController.postSignup)
