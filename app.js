@@ -1,18 +1,17 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
-var mongoose = require('mongoose')
-var session = require('express-session')
-var flash = require('connect-flash')
-var hbs = require("hbs");
+var express      = require('express');
+var app          = express();
+var mongoose     = require('mongoose');
+var passport     = require('passport');
+var flash        = require('connect-flash');
+var hbs   = require("hbs");
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
 var session      = require('express-session');
-var passport = require('passport');
 require('./config/passport')(passport)
 var usersController = require('./controllers/users')
 
-mongoose.connect('mongodb://localhost/local-authentication-with-passport');
+mongoose.connect(process.env.MONOGOLAB_URI  || 'mongodb://localhost/k9-express');
 
 
 app.use(bodyParser.json());
@@ -52,7 +51,7 @@ app.use(routes);
 
 
 
-
-app.listen(3000, function(){
-  console.log("Wheee! I'm working!");
+var port = process.env.PORT || 3000;
+app.listen(port, function() {
+console.log("Listening on " + port);
 });
