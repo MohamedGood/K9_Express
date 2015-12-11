@@ -1,3 +1,4 @@
+var User = require("../models/user");
 var passport = require("passport")
 
 // GET /signup
@@ -14,7 +15,7 @@ function postSignup(request, response, next) {
     failureRedirect : '/signup',
     failureFlash : true
   });
-  
+
   return signupStrategy(request, response, next);
 }
 
@@ -40,9 +41,9 @@ function getLogout(request, response) {
 }
 
 // Restricted page
-function secret(request, response){
-  response.render("secret.hbs");
-}
+// function secret(request, response){
+  // response.render("secret.hbs");
+// }
 
 
 
@@ -55,5 +56,5 @@ module.exports = {
   getSignup: getSignup,
   postSignup: postSignup,
   getLogout: getLogout,
-  secret: secret
+  // secret: secret
 };

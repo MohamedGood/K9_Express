@@ -1,69 +1,45 @@
 var express      = require('express');
-var app          = express();
-var mongoose     = require('mongoose');
-var passport     = require('passport');
-var flash        = require('connect-flash');
-var hbs   = require("hbs");
-var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
 var session      = require('express-session');
+var flash        = require('connect-flash');
+var mongoose     = require('mongoose');
+var bodyParser   = require('body-parser');
+var cookieParser = require('cookie-parser');
+var morgan       = require('morgan');
+
+mongoose.connect(process.env.MONOGOLAB_URI || 'mongodb://localhost/k9');
+var app          = express();
+
+var passport     = require('passport');
 require('./config/passport')(passport)
-var usersController = require('./controllers/users')
 
-mongoose.connect(process.env.MONOGOLAB_URI  || 'mongodb://localhost/k9-express');
-
-app.use(morgan('dev'));
-app.use(cookieParser());
-app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "hbs");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({secret:'k9',resave:true,saveUninitialized:true}))
 app.use(passport.initialize())
 app.use(passport.session());
+app.use(morgan('dev'));
+app.use(cookieParser());
 app.use(flash())
-
-
 app.use(function (req, res, next) {
   global.currentUser = req.user;
   res.locals.currentUser = req.user;
   next();
 });
 
-function authenticatedUser(req, res, next) {
-  // If the user is authenticated, then we continue the execution
-  if (req.isAuthenticated()) return next();
+var usersController = require('./controllers/users')
 
-  // Otherwise the request is always redirected to the home page
-  res.redirect('/');
-}
-
-
-app.get("/", function(req, res){
+app.get("/",function(req, res){
+  console.log(req.user);
   res.render("index.hbs");
 });
 
-app.get("/signup", function(req, res){
-  res.render("signup.hbs");
-});
-
-app.get("/login", function(req, res){
-  res.render("login.hbs");
-});
-
+app.get("/signup",usersController.getSignup)
 app.post("/signup",usersController.postSignup)
+app.get("/login",usersController.getLogin)
 app.post("/login",usersController.postLogin)
-
-
-//var routes = require('./config/routes');
-//app.use(routes);
-
-
-
-// app.use("/k9", require("./controllers/k9s.js"));
-// app.use("/location", require("./controllers/locations.js"));
-
-
+app.get('/logout', usersController.getLogout);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {

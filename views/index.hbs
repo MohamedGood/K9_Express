@@ -15,6 +15,7 @@
     // Create a Google coordinate object for where to initially center the map
     var latlng = new google.maps.LatLng( 38.8951, -77.0367 );	// Washington, DC
 
+
     // Map options for how to display the Google map
     var mapOptions = { zoom: 12, center: latlng  };
 
@@ -70,7 +71,20 @@
     // Set event to display the InfoWindow anchored to the marker when the marker is clicked.
     google.maps.event.addListener( marker, 'click', function() { infowindow.open( map, marker ); });
   }
-  
+  function initAutocomplete() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -33.8688, lng: 151.2195},
+    zoom: 13,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+
+}
 
   </script>
   <style>
@@ -83,7 +97,9 @@
   </style>
 </head>
 <body>
-
+  {{#if currentUser}}
+  <p>You are currently logged in as {{currentUser.local.email}}</p>
+{{/if}}
   <!-- Dislay Google map here -->
   <div id='map-canvas' ></div><br/>
   <div>

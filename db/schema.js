@@ -8,7 +8,8 @@ var Schema = mongoose.Schema,
 
  var UserSchema = new Schema({
    local:{
-     email: String, password: String
+     email: String,
+     password: String,
    }
  })
  UserSchema.methods.encrypt = function(password) {
@@ -20,7 +21,7 @@ var Schema = mongoose.Schema,
  };
 
  mongoose.model("User", UserSchema)
- 
+
 // var k9Schema = new Schema(
 //   {
 //     name: String,
