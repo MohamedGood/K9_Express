@@ -3,6 +3,7 @@
 <head>
   <header><h1></h1></header>
   <div class="Locations"></div>
+  <!-- ERICA: What are there two lines is this? And why are they in the <head> rather than the <body>? -->
 
   <title>Google Map Template with Geocoded Address</title>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>		<!-- Google Maps API -->
@@ -95,11 +96,12 @@
     height: 500px;	/* map height */
   }
   </style>
+  <!-- ERICA: I can't see a reason for these script and style tags to be here. The CSS selector could easily be added to your styles.css, and the javascript provided by Google should be moved to a separate script file and linked in the <head>.)  -->
 </head>
 <body>
   {{#if currentUser}}
   <p>You are currently logged in as {{currentUser.local.email}}</p>
-{{/if}}
+  {{/if}}
   <!-- Dislay Google map here -->
   <div id='map-canvas' ></div><br/>
   <div>

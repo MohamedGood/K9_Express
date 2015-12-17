@@ -21,7 +21,7 @@ var Schema = mongoose.Schema,
  };
 
  mongoose.model("User", UserSchema)
-
+//ERICA: Again, there was potential here, but it's totally isolated from the functionality, and even the appearance, of the app
 // var k9Schema = new Schema(
 //   {
 //     name: String,

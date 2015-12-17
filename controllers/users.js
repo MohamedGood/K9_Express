@@ -45,7 +45,7 @@ function getLogout(request, response) {
   // response.render("secret.hbs");
 // }
 
-
+//ERICA: You appropriately commented out references to "secret", a template you are not actually using, but did not delete them or the secret.hbs file itself. 'Secret' was an example from a lesson, and not actually a component of successful auth.
 
 
 

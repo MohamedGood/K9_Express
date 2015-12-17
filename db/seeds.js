@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 var db = mongoose.connection;
 var markets = require("./login")
 var vendor = require("./signup")
-
+//ERICA: Markets? Vendors? What are you trying to do here?
 // mongoose.connect(process.env.MONOGOLAB_URI  || 'mongodb://localhost/k9-express');
 
 // db.once("open", function(){
