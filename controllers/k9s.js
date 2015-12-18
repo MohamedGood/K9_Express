@@ -13,3 +13,5 @@ router.get("/", function(req, res){
     res.json(location)
   });
 });
+
+//ERICA: This has potential, but you didn't do anything with it...

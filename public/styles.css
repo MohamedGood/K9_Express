@@ -21,6 +21,21 @@ h3 {
   font color: gold;
 }
 
+/*ERICA: This can be refactored as...
+
+
+h1 {
+text-align: center;
+
+}
+h1, h2, h3 {
+  font-family: Arial;
+  font color: gold;
+}
+
+
+*/
+
 li {
   display: inline;
 
